@@ -1,66 +1,47 @@
-# Uniswap V3
+## Uniswap 系列汇总
 
-[![Lint](https://github.com/Uniswap/uniswap-v3-core/actions/workflows/lint.yml/badge.svg)](https://github.com/Uniswap/uniswap-v3-core/actions/workflows/lint.yml)
-[![Tests](https://github.com/Uniswap/uniswap-v3-core/actions/workflows/tests.yml/badge.svg)](https://github.com/Uniswap/uniswap-v3-core/actions/workflows/tests.yml)
-[![Fuzz Testing](https://github.com/Uniswap/uniswap-v3-core/actions/workflows/fuzz-testing.yml/badge.svg)](https://github.com/Uniswap/uniswap-v3-core/actions/workflows/fuzz-testing.yml)
-[![Mythx](https://github.com/Uniswap/uniswap-v3-core/actions/workflows/mythx.yml/badge.svg)](https://github.com/Uniswap/uniswap-v3-core/actions/workflows/mythx.yml)
-[![npm version](https://img.shields.io/npm/v/@uniswap/v3-core/latest.svg)](https://www.npmjs.com/package/@uniswap/v3-core/v/latest)
+[uniswap-v1](https://github.com/Louis-XWB/Uniswap-v1/)
 
-This repository contains the core smart contracts for the Uniswap V3 Protocol.
-For higher level contracts, see the [uniswap-v3-periphery](https://github.com/Uniswap/uniswap-v3-periphery)
-repository.
+[uniswap-v2-core](https://github.com/Louis-XWB/uniswap-v2-core)
 
-## Bug bounty
+[uniswap-v2-periphery](https://github.com/Louis-XWB/uniswap-v2-periphery)
 
-This repository is subject to the Uniswap V3 bug bounty program, per the terms defined [here](./bug-bounty.md).
+[uniswap-v3-core](https://github.com/Louis-XWB/uniswap-v3-core)
 
-## Local deployment
+[uniswap-v3-periphery](https://github.com/Louis-XWB/uniswap-v3-periphery)
 
-In order to deploy this code to a local testnet, you should install the npm package
-`@uniswap/v3-core`
-and import the factory bytecode located at
-`@uniswap/v3-core/artifacts/contracts/UniswapV3Factory.sol/UniswapV3Factory.json`.
-For example:
 
-```typescript
-import {
-  abi as FACTORY_ABI,
-  bytecode as FACTORY_BYTECODE,
-} from '@uniswap/v3-core/artifacts/contracts/UniswapV3Factory.sol/UniswapV3Factory.json'
+# Uniswap-v3 源码学习
 
-// deploy the bytecode
-```
+## Intro
 
-This will ensure that you are testing against the same bytecode that is deployed to
-mainnet and public testnets, and all Uniswap code will correctly interoperate with
-your local deployment.
+Uniswap V3 是 Uniswap 的第三个版本，于 2021 年 6 月推出，相较于前两版，它引入了几个关键的创新和改进：
 
-## Using solidity interfaces
+* **集中流动性**
+    
+     V3 引入了集中流动性（concentrated liquidity）的概念，允许流动性提供者（LP）在指定的价格范围内提供流动性。这提高了 LP 的资本效率，因为他们可以将流动性集中在他们认为最有价值的价格范围内。
+     
 
-The Uniswap v3 interfaces are available for import into solidity smart contracts
-via the npm artifact `@uniswap/v3-core`, e.g.:
+* **多层费率**
 
-```solidity
-import '@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol';
+    在 V3 中，流动性提供者（LP）可以根据所选择的价格区间风险选择不同的费率层级，如0.05%，0.30%，或者1.00%。
 
-contract MyContract {
-  IUniswapV3Pool pool;
+* **非同质化的流动性Token（NFT）**
 
-  function doSomethingWithPool() {
-    // pool.swap(...);
-  }
-}
+    在之前的版本中，LP 获得的是同质化的代币（ERC-20）。在V3中，他们获得的是代表其流动性份额的非均质化代币（NFT），这使得每个流动性提供的位置独一无二。
 
-```
+* **其他**
 
-## Licensing
+    比如支持 ERC-20 和 ERC-721 代币，改进价格预言机，实现交易更低的 gas 成本，但总之， V3 升级的重点，就是通过提高流动性资本效率和提供更多的定制化选项，为用户和流动性提供者带来了显著的改进。
+    
 
-The primary license for Uniswap V3 Core is the Business Source License 1.1 (`BUSL-1.1`), see [`LICENSE`](./LICENSE). However, some files are dual licensed under `GPL-2.0-or-later`:
 
-- All files in `contracts/interfaces/` may also be licensed under `GPL-2.0-or-later` (as indicated in their SPDX headers), see [`contracts/interfaces/LICENSE`](./contracts/interfaces/LICENSE)
-- Several files in `contracts/libraries/` may also be licensed under `GPL-2.0-or-later` (as indicated in their SPDX headers), see [`contracts/libraries/LICENSE`](contracts/libraries/LICENSE)
 
-### Other Exceptions
+## Resources
 
-- `contracts/libraries/FullMath.sol` is licensed under `MIT` (as indicated in its SPDX header), see [`contracts/libraries/LICENSE_MIT`](contracts/libraries/LICENSE_MIT)
-- All files in `contracts/test` remain unlicensed (as indicated in their SPDX headers).
+Uniswap-v3 Whitepaper: [uniswap.org/whitepaper-v3.pdf](https://uniswap.org/whitepaper-v3.pdf)
+
+Uniswap-v3 blog: [blog.uniswap.org](https://blog.uniswap.org/uniswap-v3)
+
+
+
